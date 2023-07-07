@@ -1,0 +1,91 @@
+[build-system]
+requires = ['hatchling', 'hatch-vcs', 'hatch-fancy-pypi-readme']
+build-backend = 'hatchling.build'
+
+[project]
+name = 'fuisce'
+authors = [
+    { name = 'Mitch Negus', email = 'mitchnegus57@gmail.com' },
+]
+description = '...'
+license = { text = 'GNU GPLv3' }
+requires-python = '>=3.9,<3.11'
+dependencies = [
+    'flask>=2.2.2',
+    'sqlalchemy>=2.0.0',
+    'sqlalchemy-views>=0.3.2',
+]
+keywords = [
+]
+classifiers = [
+  'Development Status :: 3 - Alpha',
+  'Framework :: Flask',
+  'Framework :: Pytest',
+  'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
+  'Natural Language :: English',
+  'Operating System :: OS Independent',
+  'Programming Language :: Python',
+]
+dynamic = ['readme', 'version']
+
+[project.urls]
+Download = 'https://pypi.org/project/fuisce'
+Homepage = 'https://github.com/mitchnegus/fuisce'
+Repository = 'https://github.com/mitchnegus/fuisce'
+Changelog = 'https://github.com/mitchnegus/fuisce/blob/main/CHANGELOG.md'
+
+# Set Fuisce as a pytest plugin to use the `AppTestManager` functionality
+[project.entry-points.pytest11]
+fuisce = "fuisce.testing.manager"
+
+[tool.hatch.version]
+source = 'vcs'
+
+[tool.hatch.build.targets.wheel]
+packages = [
+  'src/fuisce',
+]
+
+[tool.hatch.build.hooks.vcs]
+version-file = 'src/fuisce/_version.py'
+
+[tool.hatch.metadata.hooks.fancy-pypi-readme]
+content-type = 'text/markdown'
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.fragments]]
+path = 'README.md'
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+pattern = 'src="((?!https?:\/\/)\S+?)"'
+replacement = 'src="https://raw.githubusercontent.com/mitchnegus/fuisce/main/\1"'
+
+[[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
+pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
+replacement = '[\1](https://github.com/mitchnegus/fuisce/blob/main/\g<2>)'
+
+[tool.pytest.ini_options]
+addopts = [
+  '--import-mode=importlib',
+]
+pythonpath = ["tests/helpers"]
+norecursedirs = ["tests/helpers"]
+
+[tool.coverage.run]
+omit = [
+  'tests/*',
+  # Plugin objects are used for testing and are not evaluated well
+  'src/fuisce/testing/*',
+]
+
+[tool.coverage.report]
+exclude_lines = [
+  'raise NotImplementedError',
+]
+
+[tool.black]
+force-exclude = 'src/fuisce/_version.py'
+
+[tool.isort]
+profile = 'black'
+src_paths = ['src/fuisce', 'tests']
+known_local_folder = ["testing_helpers"]
