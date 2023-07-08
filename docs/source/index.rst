@@ -12,7 +12,8 @@ Database management and testing for SQLAlchemy-based Flask apps.
    :maxdepth: 2
    :caption: Contents:
 
-   api/modules
+   Home <self>
+   API <api/modules>
 
 .. include:: README.md
    :parser: myst_parser.sphinx_
