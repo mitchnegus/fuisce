@@ -7,7 +7,7 @@ name = 'fuisce'
 authors = [
     { name = 'Mitch Negus', email = 'mitchnegus57@gmail.com' },
 ]
-description = '...'
+description = 'Database management and testing for SQLAlchemy-based Flask apps.'
 license = { text = 'GNU GPLv3' }
 requires-python = '>=3.9,<3.11'
 dependencies = [
