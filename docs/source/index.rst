@@ -6,13 +6,16 @@
 Fuisce
 ======
 
-Description incoming...
+Database management and testing for SQLAlchemy-based Flask apps.
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    api/modules
+
+.. include:: README.md
+   :parser: myst_parser.sphinx_
 
 
 Indices and tables

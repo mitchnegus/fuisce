@@ -5,6 +5,7 @@
 import sys
 from pathlib import Path
 
+
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
@@ -20,17 +21,18 @@ release = version.split("+")[0]
 package_path = Path(__file__).parents[2] / "src/fuisce"
 sys.path.insert(0, str(package_path.absolute()))
 
+
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
 extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.napoleon',
+    'myst_parser',
 ]
 
 templates_path = ['_templates']
 exclude_patterns = []
-
 
 
 # -- Options for HTML output -------------------------------------------------
